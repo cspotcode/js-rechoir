@@ -63,7 +63,7 @@ describe('rechoir', function () {
 
     describe('all module loaders that were attempted failed to load', function () {
       var exts = {
-        '.coffee': [
+        '.babel.js': [
           'nothere',
           'orhere'
         ]
@@ -80,21 +80,33 @@ describe('rechoir', function () {
         expect(e.failures[1].module).to.be.null;
       }
 
-      it('should throw error listing each module loader that was attempted when nothrow = false', function () {
-        var err;
-        try {
-          rechoir.prepare(exts, testFilePath);
-        } catch (e) {
-          err = e;
-          check_failures(e);
-        }
-        expect(err).to.be.instanceof(Error);
+      var err;
+      function tests () {
+        it('listing each module loader that was attempted when nothrow = false', function () {
+          expect(err).to.be.instanceof(Error);
+          check_failures(err);
+        });
+        it('with extension property set to the recognized extension', function () {
+          expect(err.extension).to.equal('.babel.js');
+        });
+      }
+
+      describe('should throw error', function () {
+        before(function () {
+          try {
+            rechoir.prepare(exts, 'foo.config.babel.js');
+          } catch (e) {
+            err = e;
+          }
+        });
+        tests();
       });
 
-      it('should return error listing each module loader that was attempted when nothrow = true', function () {
-        check_failures(
-          rechoir.prepare(exts, testFilePath, null, true)
-        );
+      describe('should return error', function () {
+        before(function () {
+            err = rechoir.prepare(exts, 'foo.config.babel.js', null, true);
+        });
+        tests();
       });
     });
 
