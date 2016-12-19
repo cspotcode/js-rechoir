@@ -20,6 +20,7 @@ Look for a module loader associated with the provided file and attempt require i
 If calling this method is successful (aka: it doesn't throw), you can now require files of the type you requested natively.
 
 An error with a `failures` property will be thrown if the module loader(s) configured for a given extension cannot be registered.
+The error's `extension` property is the file extension recognized by rechoir, which is useful with ambiguous filenames such as "tests.config.babel.js".
 
 If a loader is already registered, this will simply return `true`.
 

@@ -57,6 +57,7 @@ exports.prepare = function (extensions, filepath, cwd, nothrow) {
   if (onlyErrors) {
     err = new Error('Unable to use specified module loaders for "'+usedExtension+'".');
     err.failures = attempts;
+    err.extension = usedExtension;
     if (nothrow) {
       return err;
     } else {
