@@ -20,7 +20,7 @@
     "node": ">= 0.10"
   },
   "scripts": {
-    "test": "mocha -R spec test/index.js"
+    "test": "mocha --timeout 10000 -R spec test/index.js"
   },
   "dependencies": {
     "resolve": "^1.1.6"
@@ -47,7 +47,8 @@
     "sinon": "^1.14.1",
     "toml-require": "^1.0.1",
     "typescript": "microsoft/TypeScript#32bec3b3e7ba55600da7b3f065251b02388089dd",
-    "typescript-node": "0.0.7"
+    "typescript-node": "0.0.7",
+    "xml2json": "0.9.1"
   },
   "keywords": [
     "require",
