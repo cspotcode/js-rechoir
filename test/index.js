@@ -193,7 +193,7 @@ describe('rechoir', function () {
       rechoir.prepare(extensions, './test/fixtures/test.ts');
       expect(require('./fixtures/test.ts')).to.deep.equal(expected);
     });
-    it('should know tsx', skippable('typescript-node', '0.0.1', function () {
+    it('should know tsx', skippable('ts-node', '0.0.1', function () {
       this.timeout(5000);
       rechoir.prepare(extensions, './test/fixtures/test.tsx');
       expect(require('./fixtures/test.tsx')).to.deep.equal({ default: expected });
